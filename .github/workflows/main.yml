@@ -31,6 +31,8 @@ jobs:
             ymritchie/rotten-potatoes:${{github.run_number}}
   CD:
     runs-on: ubuntu-latest
+    environment:
+      name: myenv
     steps:
       - uses: actions/checkout@v3
       - name: Kubernetes Set Context
