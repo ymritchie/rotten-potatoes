@@ -30,14 +30,23 @@ jobs:
             ymritchie/rotten-potatoes:latest
             ymritchie/rotten-potatoes:${{github.run_number}}
   CD:
+    needs: [CI]
     runs-on: ubuntu-latest
     environment:
       name: myenv
     steps:
       - uses: actions/checkout@v3
+      
       - name: Kubernetes Set Context
         uses: Azure/k8s-set-context@v2
         with:
           method: kubeconfig
           kubeconfig: ${{secrets.K8S_KUBE_CONFIG}}
+      
+      - name: Deploy to Kubernetes cluster
+        uses: Azure/k8s-deploy@v3.0
+        with: 
+          images: ymritchie/rotten-potatoes:${{github.run_number}}
+          manifests: |
+            k8s/deployments.yaml
       
