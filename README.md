@@ -12,7 +12,7 @@ MONGODB_USERNAME => Usuário do MongoDB
 
 MONGODB_PASSWORD => Senha do MongoDB
 
-## Criar imagem Docker
+## Criar imagem Docker e subir imagem no docker hub
 ```sh
 cd src
 docker build -t ymritchie/rotten-potatoes:v1 .
